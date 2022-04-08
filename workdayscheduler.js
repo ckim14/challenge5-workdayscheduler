@@ -1,7 +1,7 @@
 //get current date and time
 var currentDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 var currentHour = moment().format("H");
-var items = {};
+var items = JSON.parse(localStorage.getItem("items")) || {};
 
 $("#currentDay").append(currentDate);
 
@@ -31,20 +31,8 @@ $(".saveBtn").click(function (event) {
   localStorage.setItem("items", JSON.stringify(items));
 });
 
-//retrieve items hour and text from local storage
-
-$(".time-div").append(function (event) {
-  JSON.parse(localStorage.getItem("items")) || [];
-
-  for (var i = 0; i < items.length; i++) {
-    items[i].hour;
-    value.itemText;
-
-    $("[data-hour=" + itemHour + "]")
-      .children("textarea")
-      .val(itemText);
-  }
-
-  console.log(toDoItems);
-  alert("we did it");
+//retrieve items from local storage and print on page
+$(".time-div").each(function (event) {
+  var time = $(this).attr("id");
+  $(this).children(".time-block").val(items[time]);
 });
